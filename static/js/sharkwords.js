@@ -18,8 +18,6 @@ const WORDS = [
 let numWrong = 0;
 
 // Loop over the chars in `word` and create divs.
-//
-
 const createDivsForChars = (word) => {
   const wordContainer = document.querySelector('#word-container');
   for (const letter of word) {
@@ -28,7 +26,6 @@ const createDivsForChars = (word) => {
 };
 
 // Loop over each letter in `ALPHABET` and generate buttons.
-//
 const generateLetterButtons = () => {
   const letterButtonContainer = document.querySelector('#letter-buttons');
   for (const char of ALPHABET) {
@@ -37,21 +34,17 @@ const generateLetterButtons = () => {
 };
 
 // Set the `disabled` property of `buttonEl` to `true.
-//
 // `buttonEl` is an `HTMLElement` object.
-//
 const disableLetterButton = (buttonEl) => {
   buttonEl.disabled = true;
 };
 
 // Return `true` if `letter` is in the word.
-//
 const isLetterInWord = (letter) => document.querySelector(`div.${letter}`) !== null;
 
 
 
 // Called when `letter` is in word. Update contents of divs with `letter`.
-//
 const handleCorrectGuess = (letter) => {
   // document.querySelectorAll(`div.${letter}`)
   for (const div of document.querySelectorAll(`div.${letter}`)) {
@@ -59,53 +52,39 @@ const handleCorrectGuess = (letter) => {
   }
 };
 
-//
+
 // Called when `letter` is not in word.
-//
-
-
-
 const handleWrongGuess = () => {
   numWrong += 1;
   // Increment `numWrong` and update the shark image.
 };
+
 // If the shark gets the person (5 wrong guesses), disable
 // all buttons and show the "play again" message.
-
 //  Reset game state. Called before restarting the game.
 const resetGame = () => {
   window.location = '/sharkwords';
 };
 
-// This is like if __name__ == '__main__' in Python
-
-
-
 
 (function startGame() {
-  // For now, we'll hardcode the word that the user has to guess.
+  // For now, I'll hardcode the word that the user has to guess.
   const word = 'hello';
 
   createDivsForChars(word);
   generateLetterButtons();
 
   for (const button of document.querySelectorAll('button')) {
-    // add an event handler to handle clicking on a letter button - event target
     button.addEventListener('click', () => {
       const letter = button.innerHTML;
-    // disable the button
-    disableLetterButton(letter);
-    //if letter in word, 
-    //call handlecorrectguess
-    if (isLetterInWord(letter)) {
-      handleCorrectGuess(letter); 
-      } else {
-        handleWrongGuess();
-      }
+      disableLetterButton(letter);
+      if (isLetterInWord(letter)) {
+        handleCorrectGuess(letter); 
+        } else {
+          handleWrongGuess();
+        }
     }
     )
   }
 
-  // add an event handler to handle clicking on the Play Again button
-  // YOUR CODE HERE
 })();
